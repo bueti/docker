@@ -14,6 +14,7 @@ RUN apt-get update -qq && apt-get install -y --no-install-recommends curl gawk a
     bundle install --jobs 20 --retry 5 && \
     apt-get remove -y libffi-dev libgdbm-dev libncurses5-dev libsqlite3-dev zlib1g-dev libgmp-dev libreadline-dev \
                     libssl-dev libpq-dev curl gawk autoconf automake build-essential && \
+    apt autoremove -y && \
     rm -rf /var/lib/apt/lists/
 
 # Add a script to be executed every time the container starts.
