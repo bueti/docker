@@ -1,6 +1,6 @@
 # Rails 6
 
-Easy to use docker image pre-installed with Rails 6, NodeJS 14 LTS and Yarn.
+Easy to use docker image pre-installed with Rails 6, Postgres, NodeJS 14 LTS and Yarn.
 
 ## How to use it
 
