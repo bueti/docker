@@ -1,4 +1,6 @@
-# Rails 6.0
+# Rails 6
+
+Easy to use docker image pre-installed with Rails 6, NodeJS 14 LTS and Yarn.
 
 ## How to use it
 
@@ -39,3 +41,8 @@ Or just start it  up with:
 $ docker-compose up
 ```
 
+If you use your own Gemfile you might need to run `bundle update` first:
+
+```sh
+$ docker-compose run web bundle update
+```
