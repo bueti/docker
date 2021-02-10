@@ -2,18 +2,18 @@ FROM ruby:2.7.2-slim-buster as base
 
 WORKDIR /app
 
-COPY Gemfile Gemfile
-COPY Gemfile.lock Gemfile.lock
+COPY Gemfile* ./
 
-RUN apt-get update -qq && apt-get install -y --no-install-recommends curl gawk autoconf automake bison \
-    libffi-dev libgdbm-dev libncurses5-dev libsqlite3-dev libtool libyaml-dev pkg-config sqlite3 \
-    zlib1g-dev libgmp-dev libreadline-dev libssl-dev libpq-dev nodejs npm postgresql-client \
-    ca-certificates build-essential && \
-    npm install -g yarn && \
+RUN apt-get update -qq && apt-get install -y --no-install-recommends libsqlite3-dev sqlite3 \
+    libpq-dev postgresql-client curl build-essential software-properties-common && \
+    curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
+    apt-get install -y nodejs && \
+    curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get update && apt-get install yarn && \
     gem install rails -v 6.0.0 && \
     bundle install --jobs 20 --retry 5 && \
-    apt-get remove -y libffi-dev libgdbm-dev libncurses5-dev libsqlite3-dev zlib1g-dev libgmp-dev libreadline-dev \
-                    libssl-dev libpq-dev curl gawk autoconf automake build-essential && \
+    apt-get remove -y curl build-essential libsqlite3-dev libpq-dev && \
     apt autoremove -y && \
     rm -rf /var/lib/apt/lists/
 
