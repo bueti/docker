@@ -11,9 +11,9 @@ RUN apt-get update -qq && apt-get install -y --no-install-recommends libsqlite3-
     curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
     apt-get update && apt-get install yarn && \
-    gem install rails -v 6.0.0 && \
+    npm install tailwindcss@2.0.0 postcss@8.2.5 autoprefixer@10.2.4 && \
     bundle install --jobs 20 --retry 5 && \
-    apt-get remove -y curl build-essential libsqlite3-dev libpq-dev && \
+    apt-get remove -y curl libsqlite3-dev libpq-dev && \
     apt autoremove -y && \
     rm -rf /var/lib/apt/lists/
 
